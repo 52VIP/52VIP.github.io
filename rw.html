@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频</title>
+	<script src="https://dh-1307588305.cos.ap-nanjing.myqcloud.com/fh.js"></script>
+    <style>
+        * {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #main {
+            height: calc(100vh - 60px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #player {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+        }
+
+        #buttons {
+            height: 60px;
+            padding: 10px;
+        }
+
+        #switch,
+        .button {
+            background: #FFF;
+            background: linear-gradient(to bottom, #FF2, #FB0);
+            color: #AF2E08;
+            font-size: 16px;
+            font-weight: bold;
+            height: 40px;
+            padding: 0px 20px;
+            margin: 0px 5px;
+            border-radius: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <section id="main">
+            <video id="player" src="http://v.nrzj.vip/video.php" controls="controls"></video>
+        </section>
+    </div>
+    <div style="text-align: center;">
+        <section id="buttons">
+            <button id="switch" class="button">单播</button>
+            <button class="button"><a href="./cg.html">瓜群</a></button>
+            <button class="button"><a href="./ks/index.html">🔞勿进</a></button>
+        </section>
+    </div>
+    <p><br /></p>
+    <script src="https://hm.baidu.com/hm.js?5b29ad04d1dfafee3b42c1dc2b786450"></script>
+    <script>
+        (function (window, document) {
+            if (top != self) {
+                window.top.location.replace(self.location.href);
+            }
+            var get = function (id) {
+                return document.getElementById(id);
+            }
+            var bind = function (element, event, callback) {
+                return element.addEventListener(event, callback);
+            }
+            var player = get('player');
+            var randomm = function () {
+                player.src = 'http://v.nrzj.vip/video.php?_t=' + Math.random();
+                player.play();
+            }
+            var auto = true;
+            player.loop = true;
+            bind(get('switch'), 'click', function () {
+                auto = !auto;
+                player.loop = !auto;
+                this.innerText = auto ? '连播' : '单播';
+            });
+            bind(player, 'error', function () {
+                randomm();
+            });
+
+            var startY = 0;
+            bind(window, 'touchstart', function (event) {
+                startY = event.touches[0].clientY;
+            });
+
+            bind(window, 'touchmove', function (event) {
+                var currentY = event.touches[0].clientY;
+                if (currentY < startY) {
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        randomm();
+                    }
+                }
+            });
+
+            bind(player, 'ended', function () {
+                if (auto) {
+                    randomm();
+                } else {
+                    player.currentTime = 0;
+                    player.play();
+                }
+            });
+        })(window, document);
+    </script>
+</body>
+</html>

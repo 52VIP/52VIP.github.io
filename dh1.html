@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具聚合</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px; /* Add margin to push the content down */
+        }
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        .button {
+            flex: 0 0 calc(33.33% - 20px);
+            margin: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            box-sizing: border-box;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .scrolling-text {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: scroll 10s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .announcement {
+            background-color: #f8f8f8;
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+            overflow: hidden;
+        }
+        /* 用于从右向左的瀑布流效果的额外样式 */
+        .waterfall {
+            animation: waterfall 1s ease-in-out;
+        }
+
+        @keyframes waterfall {
+            0% {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 新增的搜索框样式 */
+        .search-box {
+            position: fixed; /* Fix the position to the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end; /* Align the content to the right */
+            background-color: #f8f8f8;
+            padding: 5px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            padding: 5px;
+            flex-grow: 1; /* Expand the input to fill the remaining space */
+        }
+
+        .search-icon {
+            margin-right: 5px;
+        }
+
+        .clear-icon {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- 搜索框 -->
+    <div class="search-box">
+        <div class="search-icon">🔍</div>
+        <input type="text" class="search-input" id="searchInput" placeholder="输入关键词" oninput="filterButtons()">
+        <div class="clear-icon" onclick="clearSearchInput()">❌</div>
+    </div>
+
+    <!-- 公告栏 -->
+    <div class="announcement">
+        <div class="announcement-text">
+            以下资源网站均来自于网络收集
+        </div>
+    </div>
+   
+    <!-- 按钮容器 -->
+    <div class="container" id="buttonsContainer">
+        <!-- 按钮将由远程JS文件控制 -->
+    </div>
+   
+    <script id="myScript" src="https://dh-1307588305.cos.ap-nanjing.myqcloud.com/dh1.js"></script>
+    
+        <script>
+            // 获取当前时间并格式化为版本号（到分钟）
+            var currentTime = new Date();
+            var formattedTime = currentTime.toISOString().slice(0, 16).replace('T', ' ').replace(/[-:]/g, '');
+    
+            // 获取脚本标签并在其src属性中添加当前时间作为版本号
+            var scriptTag = document.getElementById('myScript');
+            scriptTag.src += '?v=' + formattedTime;
+        </script>
+    <script>
+        // 获取滚动公告元素
+        const announcementText = document.querySelector('.announcement-text');
+
+        // 自动调整公告的宽度
+        function adjustAnnouncementWidth() {
+            const containerWidth = announcementText.parentElement.offsetWidth;
+            announcementText.style.width = `${containerWidth}px`;
+        }
+
+        // 当窗口大小改变时重新调整公告的宽度
+        window.addEventListener('resize', adjustAnnouncementWidth);
+
+        // 初始化调整公告的宽度
+        adjustAnnouncementWidth();
+
+        // 添加从右向左瀑布流效果的函数
+        function addWaterfallEffectToButtons() {
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach((button, index) => {
+                // 为每个按钮添加从右向左的瀑布流效果
+                button.classList.add('waterfall');
+                // 设置动画延迟，以实现错落有致的效果
+                button.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        // 等待DOM加载完成后执行添加从右向左瀑布流效果的函数
+        window.addEventListener('DOMContentLoaded', addWaterfallEffectToButtons);
+
+        // 根据搜索框的内容过滤按钮
+        function filterButtons() {
+            const searchInput = document.querySelector('.search-input');
+            const filterValue = searchInput.value.toLowerCase();
+            const buttons = document.querySelectorAll('.button');
+
+            buttons.forEach(button => {
+                const buttonText = button.innerText.toLowerCase();
+                if (buttonText.includes(filterValue)) {
+                    button.style.display = 'block';
+                } else {
+                    button.style.display = 'none';
+                }
+            });
+        }
+
+        // 清空搜索框的内容
+        function clearSearchInput() {
+            const searchInput = document.querySelector('.search-input');
+            searchInput.value = '';
+            filterButtons(); // Trigger filtering after clearing the input
+        }
+    </script>
+	<script src="https://dh-1307588305.cos.ap-nanjing.myqcloud.com/fh.js"></script>
+<script type="text/javascript" src="//js.users.51.la/21830909.js"></script>
+</body>
+</html>

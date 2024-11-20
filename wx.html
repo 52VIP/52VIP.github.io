@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>标题图文响应式H5页面</title>
+    <style>
+        /* 在这里添加你的CSS样式 */
+        /* 可以使用媒体查询和其他技术来实现响应式布局 */
+    
+        /* 标题剧中显示 */
+        #page-title {
+          text-align: center;
+        }
+    
+        /* 图片区域剧中显示 */
+        #image {
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+          height: auto;
+        }
+    
+        /* 页脚剧中显示和按钮样式 */
+        footer {
+          text-align: center;
+        }
+    
+        footer p {
+          color: red;
+        }
+    
+        footer a {
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: blue;
+          color: white;
+          text-decoration: none;
+          border-radius: 5px;
+        }
+      </style>
+  <script id="myScript" src="https://dh-1307588305.cos.ap-nanjing.myqcloud.com/wx.js"></script>
+  
+      <script>
+          // 获取当前时间并格式化为版本号（到分钟）
+          var currentTime = new Date();
+          var formattedTime = currentTime.toISOString().slice(0, 16).replace('T', ' ').replace(/[-:]/g, '');
+  
+          // 获取脚本标签并在其src属性中添加当前时间作为版本号
+          var scriptTag = document.getElementById('myScript');
+          scriptTag.src += '?v=' + formattedTime;
+      </script>
+  <script src="https://dh-1307588305.cos.ap-nanjing.myqcloud.com/fh.js"></script>
+</head>
+<body>
+  <header>
+    <h1 id="page-title">加载中...</h1>
+  </header>
+  <main>
+    <section>
+      <img id="image" src="" alt="加载中...">
+    </section>
+  </main>
+  <footer>
+    <p>🚕更多内容👉 <a href="https://9d5.cn/1Jxxq">别点我！上瘾</a></p>
+  </footer>
+</body>
+</html>

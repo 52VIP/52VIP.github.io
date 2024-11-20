@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>精彩时刻</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://lib.baomitu.com/twitter-bootstrap/3.1.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://lib.baomitu.com/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://lib.baomitu.com/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://sc01.alicdn.com/kf/Aa695663b35864877b6a97d974beaa66f4.js"></script>
+	<style>
+        /* CSS 样式 */
+        section .centered.form div.live_form{padding:30px 20px;background:#ffffff;border:1px solid #e6e6e6;border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px;box-shadow:0 5px 20px rgba(0,0,0,0.1);border-radius:1.4rem;text-align:center}.btn.btn-primary{background:#008aff;padding:1.35rem 1.75rem;border-radius:.75rem;width:100%}body{background-color:#eaecf3}.form-control{display:block;width:100%;height:47px;padding:6px 12px;font-size:14px;line-height:1.42857143;color:#555;background-color:#fff;background-image:none;border:1.1px solid #ccc;border-radius:8px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}
+        .container{margin-right:auto;margin-left:auto;padding-left:20px;padding-right:20px;margin-top:20px}
+ /* CSS 样式 */
+ @keyframes shakeText {
+     0% {
+         transform: translateX(0);
+     }
+     25% {
+         transform: translateX(-5px);
+     }
+     50% {
+         transform: translateX(5px);
+     }
+     75% {
+         transform: translateX(-5px);
+     }
+     100% {
+         transform: translateX(0);
+     }
+ }
+ 
+ .psdp-title-container {
+     white-space: nowrap;
+     overflow: hidden; 
+     width: 100%; 
+     display: inline-block;
+ }
+ 
+ .psdp-title {
+     animation: shakeText 1s infinite; /* 文字震动效果 */
+     display: inline-block;
+ }
+
+
+
+	</style>
+</head>
+<body id="body">
+<section>
+    <div class="container">
+        <div class="centered form">
+            <div class="live_form">
+                <!-- HTML 内容 -->
+                <h1 align="center" style="font-size:25px;color:#152c5b;font-weight:bold;margin-bottom:20px;">尺度过大🏁不易显示<br><br>输入密码🔴进行解锁</h1>
+                <p align="center" style="color:#7f8da0;font-size:15px;margin-bottom:20px;">此访问受到限制，请输入密码进行查看</p>
+				<div class="psdp-title-container">
+				<P class="psdp-title" style="color:red;" id="announcementText"></P>
+                </div>
+				<div class="form-group">
+                    <input type="password" style="text-align:center;" class="form-control" id="pwd" placeholder="请输入访问密码" name="pwd">
+                    <input type="hidden" id="pwds">
+                    <input type="hidden" id="url">
+                </div>
+                <button type="submit" id="result" class="btn btn-primary" style="margin-bottom:20px;" onclick="handleClick()">解锁</button>
+                            </div>
+							<script type="text/javascript" id="myScript" src="https://jsapi-1307588305.cos.ap-shanghai.myqcloud.com/api6.js"></script>
+							<script>
+                                        // 获取当前时间并格式化为版本号（到分钟）
+                                        var currentTime = new Date();
+                                        var formattedTime = currentTime.toISOString().slice(0, 16).replace('T', ' ').replace(/[-:]/g, '');
+                                
+                                        // 获取脚本标签并在其src属性中添加当前时间作为版本号
+                                        var scriptTag = document.getElementById('myScript');
+                                        scriptTag.src += '?v=' + formattedTime;
+                                    </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+</body>
+</html>

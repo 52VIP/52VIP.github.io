@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .psdp-title {
+            white-space: nowrap; /* 防止标题换行 */
+            overflow: hidden; /* 隐藏溢出内容 */
+            width: 100%; /* 宽度100%以触发溢出效果 */
+            animation: scrollTitle 10s linear infinite; /* 滚动动画 */
+        }
+
+        @keyframes scrollTitle {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body style="position: static;">
+<div id="psdp-wrap">
+    <div class="psdp-cont">
+        <span class="psdp-title" id="announcementText"></span>
+        <div class="psdp-input">
+            <form id="passwordForm">
+                <input class="psdp-btn" type="submit" id="chkBtn" value="确定">
+                <input class="psdp-pwd" type="password" name="accessPassword" id="password" placeholder="访问密码" required>
+                <div class="cfb"></div>
+                <span class="padp-hint" id="notice_accessPassword" style="display:none">请输入访问密码！</span>
+            </form>
+        </div>
+        <p class="psdp-text"><button class="psdp-btn psdp-btn--blue" onclick="window.location.href='./cg.html'">👉点我进群🍉每日瓜皮群</button></p>
+    </div>
+    <p class="psdp-text">Copy 🍉每日瓜皮 2023</p>
+</div>
+
+<script src="https://api.229p.cn/pss2.js"></script> <!-- 引用远程JavaScript文件 -->
+</body>
+</html>
